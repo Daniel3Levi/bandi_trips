@@ -35,7 +35,7 @@ app.use('/user', userRouter);
 
 app.use('/location', locationRouter);
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Bandi Trips API ❤️' });
 });
 

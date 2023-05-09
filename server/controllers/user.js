@@ -76,3 +76,24 @@ export const login = tryCatch(async (req, res) => {
     message: 'User login successfully.',
   });
 });
+
+export const updateProfile = tryCatch(async (req, res) => {
+  const updateUser = await User.findByIdAndUpdate(req.user.id, req.body, {
+    new: true,
+  });
+
+  const { _id: id, name, photoURL } = updateUser;
+
+  // update all the location records add by this user
+
+  const token = jwt.sign({ id, name, photoURL }, process.env.JWT_SECRET, {
+    expiresIn: '1h',
+  });
+
+  res.statusCode = 200;
+  res.json({
+    success: true,
+    result: { name, photoURL, token },
+    message: 'User updated successfully',
+  });
+});

@@ -5,6 +5,7 @@ export const ACTIONS = {
   end_loading: 'END_LOADING',
   update_user: 'UPDATE_USER',
   update_alert: 'UPDATE_ALERT',
+  update_profile: 'UPDATE_PROFILE',
 };
 
 const reducer = (state, action) => {
@@ -27,6 +28,9 @@ const reducer = (state, action) => {
 
     case ACTIONS.update_alert:
       return { ...state, alert: action.payload };
+
+    case ACTIONS.update_profile:
+      return { ...state, profile: action.payload };
 
     default:
       throw new Error('No mathced action.');
